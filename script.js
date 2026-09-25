@@ -82,3 +82,19 @@ document.querySelector('#poptavka').addEventListener('submit', event => {
 
   options.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 });
+
+const certificateDialog = document.querySelector('.certificate-dialog');
+const certificateDialogImage = certificateDialog.querySelector('img');
+
+document.querySelectorAll('[data-certificate]').forEach(card => {
+  card.addEventListener('click', () => {
+    certificateDialogImage.src = card.dataset.certificate;
+    certificateDialogImage.alt = card.querySelector('img').alt;
+    certificateDialog.showModal();
+  });
+});
+
+certificateDialog.querySelector('.dialog-close').addEventListener('click', () => certificateDialog.close());
+certificateDialog.addEventListener('click', event => {
+  if (event.target === certificateDialog) certificateDialog.close();
+});
